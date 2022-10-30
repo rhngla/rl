@@ -33,5 +33,12 @@
     "title": "Reinforcement Learning",
     "section": "",
     "text": "These are my notes based on Silver (2015) and Sutton and Barto (2018).\n\n\n\n\nSilver, David. 2015. “Lectures on Reinforcement Learning.” url: https://www.davidsilver.uk/teaching/.\n\n\nSutton, Richard S, and Andrew G Barto. 2018. Reinforcement Learning: An Introduction. MIT press."
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Silver, David. 2015. “Lectures on Reinforcement Learning.”\nurl: https://www.davidsilver.uk/teaching/.\n\n\nSutton, Richard S, and Andrew G Barto. 2018. Reinforcement Learning:\nAn Introduction. MIT press."
   }
 ]
