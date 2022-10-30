@@ -13,7 +13,6 @@ The reward hypothesis states that all goals can be described by a maximization o
 ![The agent receives observations $O_t$ and a scalar feedback signal (reward) $R_t$ at time step $t$, and then performs action $A_t$. The environment evaluates $A_t$ and produces the next observation $O_{t+1}$ and reward $R_{t+1}$](./assets/00_fig_rl.png){width=50% #fig-rl}
 
 
-
 ::: {.callout-note appearance="simple" icon=false}
 Note that the reward is always a scalar. In case of multiple 
 objectives, the objectives are eventually weighted and turned into a scalar value.
@@ -21,7 +20,7 @@ objectives, the objectives are eventually weighted and turned into a scalar valu
 
 
 ::: {.column-margin}
-We know from *the first fundamental theorem of calculus* that for $x$ in $[a, b]$:
+Testing display of margin content: $x$ in $[a, b]$:
 $$\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x).$$
 :::
 

@@ -4,7 +4,7 @@
     "href": "intro.html",
     "title": "1  Overview",
     "section": "",
-    "text": "The reward hypothesis states that all goals can be described by a maximization of expected cumulative reward.\n\nAn agent selects actions to maximize rewards\nActions can affect subsequent data\nIn contrast to typical supervised and unsupervised learning, data is not treated as i.i.d at different time steps\n\n\n\n\nFigure 1.1: The agent receives observations \\(O_t\\) and a scalar feedback signal (reward) \\(R_t\\) at time step \\(t\\), and then performs action \\(A_t\\). The environment evaluates \\(A_t\\) and produces the next observation \\(O_{t+1}\\) and reward \\(R_{t+1}\\)\n\n\n\n\n\n\n\n\nNote that the reward is always a scalar. In case of multiple objectives, the objectives are eventually weighted and turned into a scalar value.\n\n\n\n\n\nWe know from the first fundamental theorem of calculus that for \\(x\\) in \\([a, b]\\):\n\\[\\frac{d}{dx}\\left( \\int_{a}^{x} f(u)\\,du\\right)=f(x).\\]"
+    "text": "The reward hypothesis states that all goals can be described by a maximization of expected cumulative reward.\n\nAn agent selects actions to maximize rewards\nActions can affect subsequent data\nIn contrast to typical supervised and unsupervised learning, data is not treated as i.i.d at different time steps\n\n\n\n\nFigure 1.1: The agent receives observations \\(O_t\\) and a scalar feedback signal (reward) \\(R_t\\) at time step \\(t\\), and then performs action \\(A_t\\). The environment evaluates \\(A_t\\) and produces the next observation \\(O_{t+1}\\) and reward \\(R_{t+1}\\)\n\n\n\n\n\n\n\n\nNote that the reward is always a scalar. In case of multiple objectives, the objectives are eventually weighted and turned into a scalar value.\n\n\n\n\n\nTesting display of margin content: \\(x\\) in \\([a, b]\\):\n\\[\\frac{d}{dx}\\left( \\int_{a}^{x} f(u)\\,du\\right)=f(x).\\]"
   },
   {
     "objectID": "intro.html#history-and-state",
@@ -26,5 +26,12 @@
     "title": "2  Summary",
     "section": "",
     "text": "Too early for a summary yet!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Reinforcement Learning",
+    "section": "",
+    "text": "These are my notes based on Silver (2015) and Sutton and Barto (2018).\n\n\n\n\nSilver, David. 2015. “Lectures on Reinforcement Learning.” url: https://www.davidsilver.uk/teaching/.\n\n\nSutton, Richard S, and Andrew G Barto. 2018. Reinforcement Learning: An Introduction. MIT press."
   }
 ]
