@@ -1,9 +1,10 @@
 project:
   type: book
+  output-dir: docs
 
 book:
-  title: "rl"
-  author: "Jane Doe"
+  title: "Reinforcement Learning"
+  author: "Rohan Gala"
   date: "10/30/2022"
   chapters:
     - index.qmd

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reinforcement Learning - 1&nbsp; Introduction</title>
+<title>Reinforcement Learning - 1&nbsp; Overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -15,25 +15,6 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 
@@ -75,16 +56,17 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -114,7 +96,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -132,14 +114,22 @@ div.csl-indent {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#agents-actions-observations-and-rewards" id="toc-agents-actions-observations-and-rewards" class="nav-link active" data-scroll-target="#agents-actions-observations-and-rewards"> <span class="header-section-number">1.1</span> Agents, actions, observations, and rewards</a></li>
+  <li><a href="#history-and-state" id="toc-history-and-state" class="nav-link" data-scroll-target="#history-and-state"> <span class="header-section-number">1.2</span> History and State</a></li>
+  <li><a href="#markov-states" id="toc-markov-states" class="nav-link" data-scroll-target="#markov-states"> <span class="header-section-number">1.3</span> Markov states</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview</span></h1>
 </div>
 
 
@@ -153,15 +143,74 @@ div.csl-indent {
 
 </header>
 
-<p>This is a book created from markdown and executable code.</p>
-<p>See <span class="citation" data-cites="knuth84">Knuth (<a href="references.html#ref-knuth84" role="doc-biblioref">1984</a>)</span> for additional discussion of literate programming.</p>
-
-
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
-<div id="ref-knuth84" class="csl-entry" role="doc-biblioentry">
-Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https://doi.org/10.1093/comjnl/27.2.97</a>.
+<section id="agents-actions-observations-and-rewards" class="level2 page-columns page-full" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="agents-actions-observations-and-rewards"><span class="header-section-number">1.1</span> Agents, actions, observations, and rewards</h2>
+<p>The reward hypothesis states that all goals can be described by a maximization of expected cumulative reward.</p>
+<ul>
+<li>An <code>agent</code> selects <code>actions</code> to maximize <code>rewards</code></li>
+<li>Actions can affect subsequent data</li>
+<li>In contrast to typical supervised and unsupervised learning, data is not treated as i.i.d at different time steps</li>
+</ul>
+<div id="fig-rl" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./assets/00_fig_rl.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Figure 1.1: The agent receives observations <span class="math inline">\(O_t\)</span> and a scalar feedback signal (reward) <span class="math inline">\(R_t\)</span> at time step <span class="math inline">\(t\)</span>, and then performs action <span class="math inline">\(A_t\)</span>. The environment evaluates <span class="math inline">\(A_t\)</span> and produces the next observation <span class="math inline">\(O_{t+1}\)</span> and reward <span class="math inline">\(R_{t+1}\)</span></figcaption><p></p>
+</figure>
+</div>
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Note that the reward is always a scalar. In case of multiple objectives, the objectives are eventually weighted and turned into a scalar value.</p>
 </div>
 </div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>We know from <em>the first fundamental theorem of calculus</em> that for <span class="math inline">\(x\)</span> in <span class="math inline">\([a, b]\)</span>:</p>
+<p><span class="math display">\[\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x).\]</span></p>
+</div></div></section>
+<section id="history-and-state" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="history-and-state"><span class="header-section-number">1.2</span> History and State</h2>
+<p>History at time <span class="math inline">\(t\)</span> is the set of all earlier observations, rewards and actions: <span class="math inline">\(H_t = \left\{ O_i, R_i, A_i \right\} \quad \forall \quad i \in \left[ 0, t \right]\)</span>. The next step depends on history.</p>
+<p>State is a function of history <span class="math inline">\(S_t = f(H_t)\)</span>. Portions of state may be private to the environment. The environment state <span class="math inline">\(S_t^e\)</span> specifies the next observation and reward, and can contain information irrelevant to the agent’s goals.</p>
+<p>Agent state <span class="math inline">\(S_t^a\)</span> is an internal representation that is accessed by the RL algorithm. This is also a function of history.</p>
+</section>
+<section id="markov-states" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="markov-states"><span class="header-section-number">1.3</span> Markov states</h2>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Def: Markov state (a.k.a information state)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(P(S_{t+1}|S_{t}) = P(S_{t+1}|S_{1}, ..., S_{t})\)</span>. Thus state <span class="math inline">\(S_{t+1}\)</span> only depends on <span class="math inline">\(S_t\)</span> and is independent of <span class="math inline">\(\{S_{1}, ... S_{t-1}\}\)</span></p>
+</div>
+</div>
+<p>This implies that <span class="math inline">\(S_t\)</span> captures all history relevant for the next step (i.e.&nbsp;future). State is thus a sufficient statistic for the future.</p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Def: Fully observable environment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(O_t = S_t^e = S_t^a\)</span></p>
+</div>
+</div>
+<p>The setting of a fully observable environment with markov states is formally referred to as a Markov Decision Process (MDP).</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
