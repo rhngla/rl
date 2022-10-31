@@ -1,0 +1,13 @@
+# Fundamentals
+
+This section will cover the basic framework used for RL.
+
+ - Markov Process
+ - Markov Reward Process
+ - Markov Decision Process
+
+## Markov Process
+
+## Markov Reward Process
+
+## Markov Decision Process
