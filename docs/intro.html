@@ -154,10 +154,13 @@ ul.task-list{list-style: none;}
 <div id="fig-rl" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="./assets/00_fig_rl.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<p></p><figcaption class="figure-caption">Figure 1.1: The agent receives observations <span class="math inline">\(O_t\)</span> and a scalar feedback signal (reward) <span class="math inline">\(R_t\)</span> at time step <span class="math inline">\(t\)</span>, and then performs action <span class="math inline">\(A_t\)</span>. The environment evaluates <span class="math inline">\(A_t\)</span> and produces the next observation <span class="math inline">\(O_{t+1}\)</span> and reward <span class="math inline">\(R_{t+1}\)</span></figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure 1.1: The agent receives observations <span class="math inline">\(O_t\)</span> and a scalar feedback signal (reward) <span class="math inline">\(R_t\)</span> at time step <span class="math inline">\(t\)</span>, and then performs action <span class="math inline">\(A_t\)</span>. The environment evaluates <span class="math inline">\(A_t\)</span> and produces the next observation <span class="math inline">\(O_{t+1}\)</span> and reward <span class="math inline">\(R_{t+1}\)</span>)</figcaption><p></p>
 </figure>
 </div>
-<div class="callout-note callout callout-style-simple no-icon">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Whether we assign time step <span class="math inline">\(t\)</span> or <span class="math inline">\(t-1\)</span> to observation <span class="math inline">\(O\)</span> and reward <span class="math inline">\(R\)</span> in relation to action <span class="math inline">\(A_t\)</span> is a matter of convention. The convention indicated in caption of <a href="#fig-rl">Figure&nbsp;<span>1.1</span></a> will be followed throughout.</p>
+</div></div><div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -167,11 +170,7 @@ ul.task-list{list-style: none;}
 </div>
 </div>
 </div>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Testing display of margin content: <span class="math inline">\(x\)</span> in <span class="math inline">\([a, b]\)</span>:</p>
-<p><span class="math display">\[\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x).\]</span></p>
-</div></div></section>
+</section>
 <section id="history-and-state" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="history-and-state"><span class="header-section-number">1.2</span> History and State</h2>
 <p>History at time <span class="math inline">\(t\)</span> is the set of all earlier observations, rewards and actions: <span class="math inline">\(H_t = \left\{ O_i, R_i, A_i \right\} \quad \forall \quad i \in \left[ 0, t \right]\)</span>. The next step depends on history.</p>

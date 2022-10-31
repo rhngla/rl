@@ -10,7 +10,11 @@ The reward hypothesis states that all goals can be described by a maximization o
  - In contrast to typical supervised and unsupervised learning, data is not treated as i.i.d at different time steps
 
 
-![The agent receives observations $O_t$ and a scalar feedback signal (reward) $R_t$ at time step $t$, and then performs action $A_t$. The environment evaluates $A_t$ and produces the next observation $O_{t+1}$ and reward $R_{t+1}$](./assets/00_fig_rl.png){width=50% #fig-rl}
+![The agent receives observations $O_t$ and a scalar feedback signal (reward) $R_t$ at time step $t$, and then performs action $A_t$. The environment evaluates $A_t$ and produces the next observation $O_{t+1}$ and reward $R_{t+1}$)](./assets/00_fig_rl.png){width=50% #fig-rl}
+
+::: {.column-margin}
+Whether we assign time step $t$ or $t-1$ to observation $O$ and reward $R$ in relation to action $A_t$ is a matter of convention. The convention indicated in caption of @fig-rl will be followed throughout.
+:::
 
 
 ::: {.callout-note appearance="simple" icon=false}
@@ -18,11 +22,6 @@ Note that the reward is always a scalar. In case of multiple
 objectives, the objectives are eventually weighted and turned into a scalar value.
 :::
 
-
-::: {.column-margin}
-Testing display of margin content: $x$ in $[a, b]$:
-$$\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x).$$
-:::
 
 ## History and State
 History at time $t$ is the set of all earlier observations, rewards and actions: $H_t = \left\{ O_i, R_i, A_i \right\} \quad \forall \quad i \in \left[ 0, t \right]$. The next step depends on history.
