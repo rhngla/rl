@@ -4,21 +4,21 @@
     "href": "01_fundamentals.html",
     "title": "2  Fundamentals",
     "section": "",
-    "text": "This section will cover the basic framework used for RL."
+    "text": "This section will cover the basic framework used for RL.\nA Markov Decision Process (MDP) formally describes the environment for RL, where the environment is fully observable. Partially observable environments can be converted to a Markov Decision Process. In particular, bandits are a Markov Decision Process with one state."
   },
   {
     "objectID": "01_fundamentals.html#markov-process",
     "href": "01_fundamentals.html#markov-process",
     "title": "2  Fundamentals",
     "section": "2.1 Markov Process",
-    "text": "2.1 Markov Process"
+    "text": "2.1 Markov Process\nFrom Definition 1.1, a state is \\(S_t\\) is Markov if\n\\[P(S_{t+1}|S_{t}) = P(S_{t+1}|S_{1}, ..., S_{t}) \\tag{2.1}\\]\nFor a Markov state \\(s\\) and next state \\(s'\\), the state transition probability is\n\\[\\mathcal{P_{ss'}} = P\\left[S_{t+1}=s'|S_{t}=s' \\right] \\tag{2.2}\\]\nThe state transition probabilities can be defined as a matrix, with rows sums \\(\\sum_j \\mathcal{P_ij} = 1\\) up to 1 as follows:\n\\[\n\\mathcal{P} = \\begin{bmatrix}\n              \\mathcal{P}_{11} & \\dots & \\mathcal{P}_{1n} \\\\\n               \\vdots & \\ddots & \\vdots \\\\\n              \\mathcal{P}_{n1} & \\dots & \\mathcal{P}_{nn}\n              \\end{bmatrix}\n\\tag{2.3}\\]\nA Markov process is equivalent to a Markov chain. It is a memoryless random process, and consists of a sequence of random states \\(S_{1}, S_{2}, \\dots\\) with the Markov property.\n\n\n\n\n\n\n\nDefinition 2.1 (Markov chain) A tuple \\((S, \\mathcal{P})\\) defines a Markov chain, where\n\n\\(S\\) is a finite set of states\n\\(\\mathcal{P}\\) is the state transition probability matrix\n\n\n\n\n\nSpecific instances of state-to-state transitions are drawn from a Markov chain.\nFor a stationary Markov process, \\(\\mathcal{P}\\) is time invariant. In the context of a Reinforcement Learning problem, non-stationary Markov processes can be accommodated by\n\nincrementally adjusting solutions\nintroducing additional states and converting to a stationary Markov process."
   },
   {
     "objectID": "01_fundamentals.html#markov-reward-process",
     "href": "01_fundamentals.html#markov-reward-process",
     "title": "2  Fundamentals",
     "section": "2.2 Markov Reward Process",
-    "text": "2.2 Markov Reward Process"
+    "text": "2.2 Markov Reward Process\n\n\n\n\n\n\n\nDefinition 2.2 (Markov Reward Process) A tuple \\((\\mathcal{S}, \\mathcal{P}, {\\color{Green}R, \\gamma})\\) defines a Markov reward process, where\n\n\\(S\\) is a finite set of states\n\\(\\mathcal{P}\\) is the state transition probability matrix\n\\({\\color{Green}R}\\) is a rewards function\n\\({\\color{Green}\\gamma}\\) is a discount factor \\(\\in [0,1]\\)\n\n\n\n\n\nNote that we mostly care about the reward associated with state \\(s\\), \\(\\mathcal{r_s} = \\mathbb{E}[R_{t+1} | S_t=s]\\).\n\n\n\n\n\n\n\nDefinition 2.3 (Return/Goal) \n\\[\nG_t = R_{t+1} + \\gamma R_{t+2} + \\gamma^2R_{t+3} + ... = \\sum_{k=0}^{\\infty}\\gamma^{k}R_{t+k+1}\n\\]\n\n\n\n\nNote that \\(G_t\\) is a random variable, and we mostly care about \\(\\mathbb{E}[{G_t}]\\).\nAccording to this formulation, the discount factor determines the present value of future rewards. \\(\\gamma \\rightarrow 0\\) weighs the immediate reward highly, whereas \\(\\gamma \\rightarrow 1\\) accounts for future rewards almost as much as the immediate reward.\n\n\nIn practice, the choice of \\(\\gamma\\) in range \\([0,1)\\) is required for convergence reasons, although it conveniently reflects a recency bias and accounts for uncertainty - both in the future and in the internal model of the environment."
   },
   {
     "objectID": "01_fundamentals.html#markov-decision-process",
@@ -46,7 +46,7 @@
     "href": "00_intro.html#markov-states",
     "title": "1  Overview",
     "section": "1.3 Markov states",
-    "text": "1.3 Markov states\n\n\n\n\n\n\nDef: Markov state (a.k.a information state)\n\n\n\n\\(P(S_{t+1}|S_{t}) = P(S_{t+1}|S_{1}, ..., S_{t})\\). Thus state \\(S_{t+1}\\) only depends on \\(S_t\\) and is independent of \\(\\{S_{1}, ... S_{t-1}\\}\\)\n\n\n\\(S_t\\) captures all history relevant for the next step (i.e. future), and so state is a sufficient statistic for the future.\n\n\n\n\n\n\nDef: Fully observable environment\n\n\n\n\\(O_t = S_t^e = S_t^a\\)\n\n\nThe setting of a fully observable environment with markov states is formally referred to as a Markov Decision Process (MDP)."
+    "text": "1.3 Markov states\n\n\n\n\n\n\n\nDefinition 1.1 (Markov state) \\[P(S_{t+1}|S_{t}) = P(S_{t+1}|S_{1}, ..., S_{t})\\]\nThus state \\(S_{t+1}\\) only depends on \\(S_t\\) and is independent of \\(\\{S_{1}, ... S_{t-1}\\}\\). The markov state is also referred to as information state\n\n\n\n\n\\(S_t\\) captures all history relevant for the next step (i.e. future), and so state is a sufficient statistic for the future.\n\nDefinition 1.2 (Fully observable environment) \n\\(O_t = S_t^e = S_t^a\\)\n\nThe setting of a fully observable environment with markov states is formally referred to as a Markov Decision Process (MDP)."
   },
   {
     "objectID": "00_intro.html#partially-observable-markov-decision-process",
@@ -67,7 +67,7 @@
     "href": "00_intro.html#categorizing-rl-agents-and-problems",
     "title": "1  Overview",
     "section": "1.6 Categorizing RL agents and problems",
-    "text": "1.6 Categorizing RL agents and problems\n\nAgents\n\nValue based: explicit value function, but implicit policy (derived from value function)\nPolicy based: explicit policy function, but no value function\nActor critic: combination of Value- and Policy-based agents\nModel free: policy and/or value function, but no model of environment\nModel based: policy and/or value function, with model of environment\n\n\n\nProblems\n\nRL: environment is initially completely unknown, agent interacts with environment and updates policy\nPlanning: environment is fully known, agent calculates value and updates policy (e.g. tree search)\nExplore/exploit: exploring involves obtaining information about the environment, exploiting involves using that information to maximize reward. Here the agent should discover a good policy through interaction with the environment while minimizing loss of reward.\n\nThe main steps in these problems involve\n\nPrediction: evaluate future, given a policy\nControl: find best policy, optimize for the future"
+    "text": "1.6 Categorizing RL agents and problems\n\nAgents\n\nValue based: explicit value function, but implicit policy (derived from value function)\nPolicy based: explicit policy function, but no value function\nActor critic: combination of Value- and Policy-based agents\nModel free: policy and/or value function, but no model of environment\nModel based: policy and/or value function, with model of environment\n\n\n\nSee OpenAI (2020) for a taxonomy of problems in RL, and an implementation focussed approach to RL.\n\n\nProblems\n\nRL: environment is initially completely unknown, agent interacts with environment and updates policy\nPlanning: environment is fully known, agent calculates value and updates policy (e.g. tree search)\nExplore/exploit: exploring involves obtaining information about the environment, exploiting involves using that information to maximize reward. Here the agent should discover a good policy through interaction with the environment while minimizing loss of reward.\n\nThe main steps in these problems involve\n\nPrediction: evaluate future, given a policy\nControl: find best policy, optimize for the future\n\n\n\n\n\nOpenAI. 2020. “Spinning up in Deep RL.” url: https://spinningup.openai.com/."
   },
   {
     "objectID": "index.html",
@@ -75,5 +75,12 @@
     "title": "Reinforcement Learning",
     "section": "",
     "text": "These are my notes based on Silver (2015) and Sutton and Barto (2018).\n\n\n\n\nSilver, David. 2015. “Lectures on Reinforcement Learning.” url: https://www.davidsilver.uk/teaching/.\n\n\nSutton, Richard S, and Andrew G Barto. 2018. Reinforcement Learning: An Introduction. MIT press."
+  },
+  {
+    "objectID": "00_intro.html#markov-state",
+    "href": "00_intro.html#markov-state",
+    "title": "1  Overview",
+    "section": "1.3 Markov state",
+    "text": "1.3 Markov state\n\n\n\n\n\n\n\nDefinition 1.1 (Markov state) \\[P(S_{t+1}|S_{t}) = P(S_{t+1}|S_{1}, ..., S_{t})\\]\nThus state \\(S_{t+1}\\) only depends on \\(S_t\\) and is independent of \\(\\{S_{1}, ... S_{t-1}\\}\\). The markov state is also referred to as information state\n\n\n\n\n\\(S_t\\) captures all history relevant for the next step (i.e. future), and so state is a sufficient statistic for the future.\n\n\n\n\n\n\n\nDefinition 1.2 (Fully observable environment) \n\\[O_t = S_t^e = S_t^a\\]\n\n\n\n\nThe setting of a fully observable environment with markov states is formally referred to as a Markov Decision Process (MDP)."
   }
 ]

@@ -16,7 +16,7 @@ Whether we assign time step $t$ or $t-1$ to observation $O$ and reward $R$ in re
 :::
 
 
-::: {.callout-note appearance="simple" icon=false}
+::: {#note-scalar-reward .callout-note appearance="simple" icon=false}
 Note that the reward is always a scalar. In case of multiple 
 objectives, the objectives are eventually weighted and turned into a scalar value.
 :::
@@ -29,18 +29,27 @@ State is a function of history $S_t = f(H_t)$. Portions of state may be private 
 
 Agent state $S_t^a$ is an internal representation that is accessed by the RL algorithm. This is also a function of history.
 
-## Markov states
+## Markov state
 
 ::: {.callout-note appearance="simple" icon=false}
-## Def: Markov state (a.k.a information state)
-$P(S_{t+1}|S_{t}) = P(S_{t+1}|S_{1}, ..., S_{t})$. Thus state $S_{t+1}$ only depends on $S_t$ and is independent of $\{S_{1}, ... S_{t-1}\}$
+::: {#def-markov-state}
+## Markov state
+
+$$P(S_{t+1}|S_{t}) = P(S_{t+1}|S_{1}, ..., S_{t})$$
+
+Thus state $S_{t+1}$ only depends on $S_t$ and is independent of $\{S_{1}, ... S_{t-1}\}$. The markov state is also referred to as *information state*
+:::
 :::
 
 $S_t$ captures all history relevant for the next step (i.e. future), and so state is a sufficient statistic for the future.
 
 ::: {.callout-note appearance="simple" icon=false}
-## Def: Fully observable environment
-$O_t = S_t^e = S_t^a$
+
+::: {#def-fully-observable-environment}
+## Fully observable environment
+
+$$O_t = S_t^e = S_t^a$$
+:::
 :::
 
 The setting of a fully observable environment with markov states is formally referred to as a Markov Decision Process (MDP).
@@ -85,6 +94,10 @@ $$v_{\pi}(s)=\mathbb{E}_{\pi}[R_t + \gamma R_{t+1} + \gamma^2 R_{t+2} + ... | S_
  - **Model free**: policy and/or value function, but no model of environment
  - **Model based**: policy and/or value function, with model of environment
 
+::: {.column-margin}
+See @openai2020 for a taxonomy of problems in RL, and an implementation focussed approach to RL.
+:::
+
 ### Problems {.unnumbered}
 
  - **RL**: environment is initially completely unknown, agent interacts with environment and updates policy
@@ -95,7 +108,6 @@ The main steps in these problems involve
 
  1. **Prediction**: evaluate future, given a policy
  2. **Control**: find best policy, optimize for the future
-
 
 
 

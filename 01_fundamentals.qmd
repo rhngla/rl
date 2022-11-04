@@ -6,8 +6,86 @@ This section will cover the basic framework used for RL.
  - Markov Reward Process
  - Markov Decision Process
 
+
+ A Markov Decision Process (MDP) formally describes the environment for RL, where the environment is fully observable. Partially observable environments can be converted to a Markov Decision Process. In particular, bandits are a Markov Decision Process with one state. 
+
+
+
+
 ## Markov Process
 
+From @def-markov-state, a state is $S_t$ is Markov if 
+$$P(S_{t+1}|S_{t}) = P(S_{t+1}|S_{1}, ..., S_{t})$${#eq-markov-state}
+
+For a Markov state $s$ and next state $s'$, the state transition probability is 
+
+$$\mathcal{P_{ss'}} = P\left[S_{t+1}=s'|S_{t}=s' \right]$${#eq-state-transition-prob}
+
+The state transition probabilities can be defined as a matrix, with rows sums $\sum_j \mathcal{P_ij} = 1$ up to 1 as follows:
+
+$$
+\mathcal{P} = \begin{bmatrix} 
+              \mathcal{P}_{11} & \dots & \mathcal{P}_{1n} \\
+               \vdots & \ddots & \vdots \\
+              \mathcal{P}_{n1} & \dots & \mathcal{P}_{nn}
+              \end{bmatrix}
+$${#eq-state-transition-matrix}
+
+A Markov process is equivalent to a Markov chain. It is a memoryless random process, and consists of a sequence of random states $S_{1}, S_{2}, \dots$ with the Markov property.
+
+
+::: {.callout-note appearance="simple" icon=false}
+::: {#def-markov-chain}
+## Markov chain
+
+A tuple $(S, \mathcal{P})$ defines a Markov chain, where
+
+ - $S$ is a finite set of states
+ - $\mathcal{P}$ is the state transition probability matrix
+:::
+:::
+
+Specific instances of state-to-state transitions are drawn from a Markov chain.
+
+For a stationary Markov process, $\mathcal{P}$ is time invariant. In the context of a Reinforcement Learning problem, non-stationary Markov processes can be accommodated by
+
+ 1. incrementally adjusting solutions
+ 2. introducing additional states and converting to a stationary Markov process.
+
 ## Markov Reward Process
+
+::: {.callout-note appearance="simple" icon=false}
+::: {#def-reward-process}
+## Markov Reward Process
+
+A tuple $(\mathcal{S}, \mathcal{P}, {\color{Green}R, \gamma})$ defines a Markov reward process, where
+
+ - $S$ is a finite set of states
+ - $\mathcal{P}$ is the state transition probability matrix
+ - ${\color{Green}R}$ is a rewards function
+ - ${\color{Green}\gamma}$ is a discount factor $\in [0,1]$
+:::
+:::
+
+Note that we mostly care about the reward associated with state $s$, $\mathcal{r_s} = \mathbb{E}[R_{t+1} | S_t=s]$.
+
+
+::: {.callout-note appearance="simple" icon=false}
+::: {#def-return}
+## Return/Goal
+
+$$
+G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2R_{t+3} + ... = \sum_{k=0}^{\infty}\gamma^{k}R_{t+k+1}
+$$
+:::
+:::
+
+Note that $G_t$ is a random variable, and we mostly care about $\mathbb{E}[{G_t}]$.
+
+According to this formulation, the discount factor determines the present value of future rewards. $\gamma \rightarrow 0$ weighs the immediate reward highly, whereas $\gamma \rightarrow 1$ accounts for future rewards almost as much as the immediate reward. 
+
+::: {.column-margin}
+In practice, the choice of $\gamma$ in range $[0,1)$ is required for convergence reasons, although it conveniently reflects a *recency bias* and accounts for uncertainty - both in the future and in the internal model of the environment.
+:::
 
 ## Markov Decision Process

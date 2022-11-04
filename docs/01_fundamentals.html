@@ -56,10 +56,11 @@ ul.task-list{list-style: none;}
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -124,7 +125,7 @@ ul.task-list{list-style: none;}
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -148,12 +149,87 @@ ul.task-list{list-style: none;}
 <li>Markov Reward Process</li>
 <li>Markov Decision Process</li>
 </ul>
+<p>A Markov Decision Process (MDP) formally describes the environment for RL, where the environment is fully observable. Partially observable environments can be converted to a Markov Decision Process. In particular, bandits are a Markov Decision Process with one state.</p>
 <section id="markov-process" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="markov-process"><span class="header-section-number">2.1</span> Markov Process</h2>
+<p>From <a href="00_intro.html#def-markov-state">Definition&nbsp;<span>1.1</span></a>, a state is <span class="math inline">\(S_t\)</span> is Markov if</p>
+<p><span id="eq-markov-state"><span class="math display">\[P(S_{t+1}|S_{t}) = P(S_{t+1}|S_{1}, ..., S_{t}) \tag{2.1}\]</span></span></p>
+<p>For a Markov state <span class="math inline">\(s\)</span> and next state <span class="math inline">\(s'\)</span>, the state transition probability is</p>
+<p><span id="eq-state-transition-prob"><span class="math display">\[\mathcal{P_{ss'}} = P\left[S_{t+1}=s'|S_{t}=s' \right] \tag{2.2}\]</span></span></p>
+<p>The state transition probabilities can be defined as a matrix, with rows sums <span class="math inline">\(\sum_j \mathcal{P_ij} = 1\)</span> up to 1 as follows:</p>
+<p><span id="eq-state-transition-matrix"><span class="math display">\[
+\mathcal{P} = \begin{bmatrix}
+              \mathcal{P}_{11} &amp; \dots &amp; \mathcal{P}_{1n} \\
+               \vdots &amp; \ddots &amp; \vdots \\
+              \mathcal{P}_{n1} &amp; \dots &amp; \mathcal{P}_{nn}
+              \end{bmatrix}
+\tag{2.3}\]</span></span></p>
+<p>A Markov process is equivalent to a Markov chain. It is a memoryless random process, and consists of a sequence of random states <span class="math inline">\(S_{1}, S_{2}, \dots\)</span> with the Markov property.</p>
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-markov-chain" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2.1 (Markov chain) </strong></span>A tuple <span class="math inline">\((S, \mathcal{P})\)</span> defines a Markov chain, where</p>
+<ul>
+<li><span class="math inline">\(S\)</span> is a finite set of states</li>
+<li><span class="math inline">\(\mathcal{P}\)</span> is the state transition probability matrix</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Specific instances of state-to-state transitions are drawn from a Markov chain.</p>
+<p>For a stationary Markov process, <span class="math inline">\(\mathcal{P}\)</span> is time invariant. In the context of a Reinforcement Learning problem, non-stationary Markov processes can be accommodated by</p>
+<ol type="1">
+<li>incrementally adjusting solutions</li>
+<li>introducing additional states and converting to a stationary Markov process.</li>
+</ol>
 </section>
-<section id="markov-reward-process" class="level2" data-number="2.2">
+<section id="markov-reward-process" class="level2 page-columns page-full" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="markov-reward-process"><span class="header-section-number">2.2</span> Markov Reward Process</h2>
-</section>
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-reward-process" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2.2 (Markov Reward Process) </strong></span>A tuple <span class="math inline">\((\mathcal{S}, \mathcal{P}, {\color{Green}R, \gamma})\)</span> defines a Markov reward process, where</p>
+<ul>
+<li><span class="math inline">\(S\)</span> is a finite set of states</li>
+<li><span class="math inline">\(\mathcal{P}\)</span> is the state transition probability matrix</li>
+<li><span class="math inline">\({\color{Green}R}\)</span> is a rewards function</li>
+<li><span class="math inline">\({\color{Green}\gamma}\)</span> is a discount factor <span class="math inline">\(\in [0,1]\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Note that we mostly care about the reward associated with state <span class="math inline">\(s\)</span>, <span class="math inline">\(\mathcal{r_s} = \mathbb{E}[R_{t+1} | S_t=s]\)</span>.</p>
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-return" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2.3 (Return/Goal) </strong></span></p>
+<p><span class="math display">\[
+G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2R_{t+3} + ... = \sum_{k=0}^{\infty}\gamma^{k}R_{t+k+1}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>Note that <span class="math inline">\(G_t\)</span> is a random variable, and we mostly care about <span class="math inline">\(\mathbb{E}[{G_t}]\)</span>.</p>
+<p>According to this formulation, the discount factor determines the present value of future rewards. <span class="math inline">\(\gamma \rightarrow 0\)</span> weighs the immediate reward highly, whereas <span class="math inline">\(\gamma \rightarrow 1\)</span> accounts for future rewards almost as much as the immediate reward.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>In practice, the choice of <span class="math inline">\(\gamma\)</span> in range <span class="math inline">\([0,1)\)</span> is required for convergence reasons, although it conveniently reflects a <em>recency bias</em> and accounts for uncertainty - both in the future and in the internal model of the environment.</p>
+</div></div></section>
 <section id="markov-decision-process" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="markov-decision-process"><span class="header-section-number">2.3</span> Markov Decision Process</h2>
 

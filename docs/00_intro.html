@@ -15,6 +15,25 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -120,7 +139,7 @@ ul.task-list{list-style: none;}
   <ul>
   <li><a href="#agents-actions-observations-and-rewards" id="toc-agents-actions-observations-and-rewards" class="nav-link active" data-scroll-target="#agents-actions-observations-and-rewards"> <span class="header-section-number">1.1</span> Agents, actions, observations, and rewards</a></li>
   <li><a href="#history-and-state" id="toc-history-and-state" class="nav-link" data-scroll-target="#history-and-state"> <span class="header-section-number">1.2</span> History and State</a></li>
-  <li><a href="#markov-states" id="toc-markov-states" class="nav-link" data-scroll-target="#markov-states"> <span class="header-section-number">1.3</span> Markov states</a></li>
+  <li><a href="#markov-state" id="toc-markov-state" class="nav-link" data-scroll-target="#markov-state"> <span class="header-section-number">1.3</span> Markov state</a></li>
   <li><a href="#partially-observable-markov-decision-process" id="toc-partially-observable-markov-decision-process" class="nav-link" data-scroll-target="#partially-observable-markov-decision-process"> <span class="header-section-number">1.4</span> Partially Observable Markov Decision Process</a></li>
   <li><a href="#rl-agents" id="toc-rl-agents" class="nav-link" data-scroll-target="#rl-agents"> <span class="header-section-number">1.5</span> RL agents</a>
   <ul class="collapse">
@@ -172,12 +191,12 @@ ul.task-list{list-style: none;}
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>Whether we assign time step <span class="math inline">\(t\)</span> or <span class="math inline">\(t-1\)</span> to observation <span class="math inline">\(O\)</span> and reward <span class="math inline">\(R\)</span> in relation to action <span class="math inline">\(A_t\)</span> is a matter of convention. The convention indicated in caption of <a href="#fig-rl">Figure&nbsp;<span>1.1</span></a> will be followed throughout.</p>
-</div></div><div class="callout-note callout callout-style-simple no-icon">
+</div></div><div id="note-scalar-reward" class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-body-container">
+<div id="note-scalar-reward" class="callout-body-container">
 <p>Note that the reward is always a scalar. In case of multiple objectives, the objectives are eventually weighted and turned into a scalar value.</p>
 </div>
 </div>
@@ -189,33 +208,33 @@ ul.task-list{list-style: none;}
 <p>State is a function of history <span class="math inline">\(S_t = f(H_t)\)</span>. Portions of state may be private to the environment. The environment state <span class="math inline">\(S_t^e\)</span> specifies the next observation and reward, and can contain information irrelevant to the agent’s goals.</p>
 <p>Agent state <span class="math inline">\(S_t^a\)</span> is an internal representation that is accessed by the RL algorithm. This is also a function of history.</p>
 </section>
-<section id="markov-states" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="markov-states"><span class="header-section-number">1.3</span> Markov states</h2>
-<div class="callout-note callout callout-style-simple no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center">
+<section id="markov-state" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="markov-state"><span class="header-section-number">1.3</span> Markov state</h2>
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Def: Markov state (a.k.a information state)
+<div class="callout-body-container">
+<div id="def-markov-state" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 1.1 (Markov state) </strong></span><span class="math display">\[P(S_{t+1}|S_{t}) = P(S_{t+1}|S_{1}, ..., S_{t})\]</span></p>
+<p>Thus state <span class="math inline">\(S_{t+1}\)</span> only depends on <span class="math inline">\(S_t\)</span> and is independent of <span class="math inline">\(\{S_{1}, ... S_{t-1}\}\)</span>. The markov state is also referred to as <em>information state</em></p>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><span class="math inline">\(P(S_{t+1}|S_{t}) = P(S_{t+1}|S_{1}, ..., S_{t})\)</span>. Thus state <span class="math inline">\(S_{t+1}\)</span> only depends on <span class="math inline">\(S_t\)</span> and is independent of <span class="math inline">\(\{S_{1}, ... S_{t-1}\}\)</span></p>
 </div>
 </div>
 <p><span class="math inline">\(S_t\)</span> captures all history relevant for the next step (i.e.&nbsp;future), and so state is a sufficient statistic for the future.</p>
-<div class="callout-note callout callout-style-simple no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Def: Fully observable environment
+<div class="callout-body-container">
+<div id="def-fully-observable-environment" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 1.2 (Fully observable environment) </strong></span></p>
+<p><span class="math display">\[O_t = S_t^e = S_t^a\]</span></p>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><span class="math inline">\(O_t = S_t^e = S_t^a\)</span></p>
 </div>
 </div>
 <p>The setting of a fully observable environment with markov states is formally referred to as a Markov Decision Process (MDP).</p>
@@ -255,9 +274,9 @@ Def: Fully observable environment
 </ul>
 </section>
 </section>
-<section id="categorizing-rl-agents-and-problems" class="level2" data-number="1.6">
+<section id="categorizing-rl-agents-and-problems" class="level2 page-columns page-full" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="categorizing-rl-agents-and-problems"><span class="header-section-number">1.6</span> Categorizing RL agents and problems</h2>
-<section id="agents" class="level3 unnumbered">
+<section id="agents" class="level3 unnumbered page-columns page-full">
 <h3 class="unnumbered anchored" data-anchor-id="agents">Agents</h3>
 <ul>
 <li><strong>Value based</strong>: explicit value function, but implicit policy (derived from value function)</li>
@@ -266,7 +285,10 @@ Def: Fully observable environment
 <li><strong>Model free</strong>: policy and/or value function, but no model of environment</li>
 <li><strong>Model based</strong>: policy and/or value function, with model of environment</li>
 </ul>
-</section>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>See <span class="citation" data-cites="openai2020">OpenAI (<a href="references.html#ref-openai2020" role="doc-biblioref">2020</a>)</span> for a taxonomy of problems in RL, and an implementation focussed approach to RL.</p>
+</div></div></section>
 <section id="problems" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="problems">Problems</h3>
 <ul>
@@ -281,6 +303,11 @@ Def: Fully observable environment
 </ol>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-openai2020" class="csl-entry" role="doc-biblioentry">
+OpenAI. 2020. <span>“Spinning up in Deep RL.”</span> <span class="smallcaps">url:</span>&nbsp;<a href="https://spinningup.openai.com/" class="uri">https://spinningup.openai.com/</a>.
+</div>
+</div>
 </section>
 </section>
 
