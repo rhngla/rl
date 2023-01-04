@@ -72,7 +72,7 @@ One implementation is using recurrent neural networks, as $S_t^a = \sigma(S_{t-1
 3. `Model`: representation of the environment
 
 ### Policy {.unnumbered}
-The policy function $\pi$ maps states to actions. It can be deterministic a = \pi{s} or stochastic $\pi(a|s) = P[A=a|S=s]$
+The policy function $\pi$ maps states to actions. It can be deterministic $a = \pi(s)$ or stochastic $\pi(a|s) = P[A=a|S=s]$.
 
 ### Value function {.unnumbered}
 Defined for a policy attached to a given state $s$ at time step $t$:

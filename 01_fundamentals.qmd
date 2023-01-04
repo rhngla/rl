@@ -88,4 +88,56 @@ According to this formulation, the discount factor determines the present value 
 In practice, the choice of $\gamma$ in range $[0,1)$ is required for convergence reasons, although it conveniently reflects a *recency bias* and accounts for uncertainty - both in the future and in the internal model of the environment.
 :::
 
+::: {.callout-note appearance="simple" icon=false}
+::: {#def-return}
+## Value function
+
+
+The value function $v(s)$ is defined as the expected return starting from state $s$:
+$$
+v(s) = \mathbb{E}[{G_t} | {S_t = s}]
+$$
+:::
+:::
+
+### Bellman equation for a Markov Rewards Process:
+The value function is broken down into the immediate reward $R_{t+1}$ and a discounted value-of-successor function $\gamma v(S_{t+1})$.
+$$
+v(s) = \mathbb{E}[R_{t+1} + \gamma v(S_{t+1}) | {S_t = s}]
+$$
+
+$$
+\therefore v(s) = r_s + \gamma \sum_{s' \in S} {\mathcal{P}_{ss'} v({s'})}
+$${#eq-bellman-MRP}
+
+We can represent the Bellman equation using matrices:
+$$
+\mathcal{V} = \mathcal{R} + \gamma \mathcal{P}\mathcal{V}
+$${#eq-bellman-matrix-MRP}
+
+$$
+\begin{bmatrix} 
+v({s_{1}}) \\ \vdots \\ v({s_{n}})
+\end{bmatrix}  =  \begin{bmatrix} 
+r({s_{1}}) \\ \vdots \\ r({s_{n}})
+\end{bmatrix} + \gamma 
+\begin{bmatrix} 
+\mathcal{P}_{11} & \dots & \mathcal{P}_{1n} \\
+\vdots & \ddots & \vdots \\
+\mathcal{P}_{n1} & \dots & \mathcal{P}_{nn}
+\end{bmatrix}
+\begin{bmatrix} 
+v({s_{1}}) \\ \vdots \\ v({s_{n}})
+\end{bmatrix}
+$$
+
+Using @eq-bellman-matrix-MRP we see that $\mathcal{V} = (I - \gamma \mathcal{P})^{-1}\mathcal{R}$
+
+The computational complexity to obtain this solution is $\mathcal{O}(n^3)$ for $n$ states. Such solutions can thus be calculated for a small number of states. Iterative methods are used for cases where the number of states is large. Examples of such methods are:
+
+ - Dynamic programming
+ - Mote carlo evaluation
+ - Temporal difference learning
+
+
 ## Markov Decision Process
